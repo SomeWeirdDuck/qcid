@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:backdrop/backdrop.dart';
 import 'package:quack/labs/lab1.dart';
-import 'package:quack/lecture_edited.dart';
+import 'package:quack/lecture.dart';
 import 'package:firebase_core/firebase_core.dart';
-
-import './lecture.dart';
 import './practice.dart';
 
 class Backdrop extends StatelessWidget {
@@ -35,7 +33,7 @@ class Backdrop extends StatelessWidget {
                     primary: Colors.transparent,
                     elevation: 0.0),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/lecture_edited');
+                  Navigator.pushNamed(context, '/lectures');
                 },
                 child: const Text('Теория', style: TextStyle(fontSize: 36)),
               ),
@@ -106,9 +104,8 @@ void main() async {
       routes: {
         '/': (context) => const Backdrop(),
         '/practice': (context) => const PracticePage(),
-        '/theory': (context) => TheoryPage(),
         '/labs/lab1': (context) => const Lab1_Show(),
-        '/lecture_edited': (context) => const LecturePageV2(),
+        '/lectures': (context) => const LecturePageV2(),
       },
     ),
   );
