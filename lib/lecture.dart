@@ -7,16 +7,17 @@ class LecturePageV2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xff3f3f3f),
-        appBar: AppBar(title: const Text("Lectures")),
-        body: ListView(
-          padding: const EdgeInsets.all(20),
-          children: [
-            ...List.generate(11, (index) {
-              return TitleExemp(idx: index);
-            })
-          ],
-        ));
+      backgroundColor: const Color(0xff3f3f3f),
+      appBar: AppBar(title: const Text("Lectures")),
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: [
+          ...List.generate(28, (index) {
+            return TitleExemp(idx: index);
+          })
+        ],
+      ),
+    );
   }
 }
 //Navigator.pushNamed(context, '/labs/lab1')
@@ -28,9 +29,20 @@ class TitleExemp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () => Navigator.push(context,
-          MaterialPageRoute(builder: (context) => DetailsPage(idx: idx))),
-      title: Text("${idx + 1}. Text"),
+      contentPadding: const EdgeInsets.only(left: 30, right: 30),
+      minVerticalPadding: 15,
+      tileColor: const Color(0xffc4c4c4),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DetailsPage(idx: idx),
+        ),
+      ),
+      title: Text(
+        "${idx + 1}. Text",
+        style: const TextStyle(
+            color: Colors.white, fontSize: 15, fontWeight: FontWeight.w700),
+      ),
     );
   }
 }
@@ -42,27 +54,28 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Quack ${idx + 1}"),
-        ),
-        body: FutureBuilder<DocumentSnapshot>(
-          future: FirebaseFirestore.instance.collection('test').doc().get(),
-          builder:
-              (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-            return ListView(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(snapshot.data!.get('test')),
-                    ],
-                  ),
+      appBar: AppBar(
+        title: Text("Quack ${idx + 1}"),
+      ),
+      body: FutureBuilder<DocumentSnapshot>(
+        future: FirebaseFirestore.instance.collection('test').doc().get(),
+        builder:
+            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          return ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(snapshot.data!.get('test')),
+                  ],
                 ),
-              ],
-            );
-          },
-        ));
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 }

@@ -86,10 +86,10 @@ class Backdrop extends StatelessWidget {
                     text:
                         'Данный программный продукт создан исключительно в целях обучения. \n \n Команда разработчиков не несет ответственность за неисправность приложения. \n\n С уважением, команда GooseINC.',
                     style:
-                        TextStyle(fontWeight: FontWeight.w200, fontSize: 18)),
+                        TextStyle(fontWeight: FontWeight.w200, fontSize: 18),),
               ],
             ),
-          )),
+          ),),
     );
   }
 }
