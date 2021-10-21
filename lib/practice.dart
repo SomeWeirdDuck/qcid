@@ -5,7 +5,7 @@ class ButtonGradient extends StatelessWidget {
   final int clr2;
   final String txt;
   final FontWeight weight;
-  final double s = 17.0;
+  final double s = 18.0;
   final Color col = const Color(0xff3f3f3f);
   final Function() func;
 
@@ -20,25 +20,34 @@ class ButtonGradient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
+    return Ink(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         gradient: LinearGradient(colors: [Color(clr1), Color(clr2)]),
       ),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            primary: Colors.transparent, elevation: 0.0),
-        onPressed: func,
-        child: Text(
-          txt,
-          textAlign: TextAlign.left,
-          style: TextStyle(
-            color: col,
-            fontSize: s,
-            fontWeight: FontWeight.w700,
+      child: InkWell(
+        onTap: func,
+        borderRadius: BorderRadius.circular(15),
+        // colors esli nada
+        child: Container(
+          alignment: Alignment.center,
+          child: Text(
+            txt,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: col,
+              fontSize: s,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
       ),
+      // child: ElevatedButton(
+      //   style: ElevatedButton.styleFrom(
+      //       primary: Colors.transparent, elevation: 0.0),
+      //   onPressed: func,
+
+      // ),
     );
   }
 }
@@ -58,7 +67,7 @@ class PracticePage extends StatelessWidget {
         children: <Widget>[
           ButtonGradient(
             txt: "Реализация генератора паролей с заданным параметром",
-            func: () => Navigator.pushNamed(context, '/labs/lab1'),
+            func: () => Navigator.pushNamed(context, '/labs/true_lab1'),
             clr1: 0xff84FAB0,
             clr2: 0xff8FD3F4,
             weight: FontWeight.w700,

@@ -15,11 +15,12 @@ class _Lab1ShowState extends State<Lab1Show> {
   bool generatedText2 = false;
   late String quack1;
   late String quack2;
+  late String bonk;
 
   @override
   Widget build(BuildContext context) {
     return Navigator(onGenerateRoute: (settings) {
-      var val;
+      String val;
       return MaterialPageRoute<void>(
           builder: (context) => Scaffold(
                 body: Center(
@@ -34,9 +35,23 @@ class _Lab1ShowState extends State<Lab1Show> {
                             generatedText1 = true;
                           });
                         },
-                        child: const Text('Сгенерировать пароль'),
+                        child: const Text('Сгенерировать пароль 1'),
                       ),
-                      TextField(onSubmitted: (val) {}),
+                      TextField(onSubmitted: (val) {
+                        setState(() {
+                          bonk = val;
+                        });
+                      }),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            quack2 = PasswordGenerator.mapGenerator(bonk);
+                            generatedText2 = true;
+                          });
+                        },
+                        child: const Text('Сгенерировать пароль 2'),
+                      ),
+                      generatedText2 ? Text(quack2) : const Text(""),
                     ],
                   ),
                 ),
