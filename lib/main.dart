@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:backdrop/backdrop.dart';
-import 'package:quack/labs/lab1.dart';
+import 'package:quack/labs/true_lab1.dart';
 import 'package:quack/lecture.dart';
 import 'package:firebase_core/firebase_core.dart';
 import './practice.dart';
@@ -86,10 +86,10 @@ class Backdrop extends StatelessWidget {
                     text:
                         'Данный программный продукт создан исключительно в целях обучения. \n \n Команда разработчиков не несет ответственность за неисправность приложения. \n\n С уважением, команда GooseINC.',
                     style:
-                        TextStyle(fontWeight: FontWeight.w200, fontSize: 18),),
+                        TextStyle(fontWeight: FontWeight.w200, fontSize: 18)),
               ],
             ),
-          ),),
+          )),
     );
   }
 }
@@ -104,7 +104,8 @@ void main() async {
       routes: {
         '/': (context) => const Backdrop(),
         '/practice': (context) => const PracticePage(),
-        '/labs/lab1': (context) => const Lab1_Show(),
+        //'/labs/lab1': (context) => const Lab11_Show(),
+        '/labs/true_lab1': (context) => const Lab1Show(),
         '/lectures': (context) => const LecturePageV2(),
       },
     ),

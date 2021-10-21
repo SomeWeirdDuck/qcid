@@ -2,8 +2,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
-class Lab1_Show extends StatelessWidget {
-  const Lab1_Show({Key? key}) : super(key: key);
+class Lab11_Show extends StatelessWidget {
+  const Lab11_Show({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +27,12 @@ class Lab1_Show extends StatelessWidget {
 }
 
 class PasswordGenerator {
-  static String generate(length, alphabet) {
+  static String generate(length, collection) {
     var rand = Random();
     String password = "";
     for (int i = 0; i < length; i++) {
-      var index = rand.nextInt(alphabet.length);
-      password += alphabet[index];
+      var index = rand.nextInt(collection.length);
+      password += collection[index];
     }
     return password;
   }
