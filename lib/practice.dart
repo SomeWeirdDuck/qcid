@@ -67,7 +67,7 @@ class PracticePage extends StatelessWidget {
         children: <Widget>[
           ButtonGradient(
             txt: "Реализация генератора паролей с заданным параметром",
-            func: () => Navigator.pushNamed(context, '/labs/true_lab1'),
+            func: () => Navigator.pushNamed(context, '/labs/lab1'),
             clr1: 0xff84FAB0,
             clr2: 0xff8FD3F4,
             weight: FontWeight.w700,

@@ -1,33 +1,66 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:math';
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
-class Lab11_Show extends StatelessWidget {
-  const Lab11_Show({Key? key}) : super(key: key);
+class Lab1Show extends StatefulWidget {
+  const Lab1Show({Key? key}) : super(key: key);
+  @override
+  _Lab1ShowState createState() => _Lab1ShowState();
+}
+
+class _Lab1ShowState extends State<Lab1Show> {
+  bool generatedText1 = false;
+  bool generatedText2 = false;
+  late String quack1;
+  late String quack2;
+  late String bonk;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController fieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Navigator(
-        // Adding [ValueKey] to make sure that the widget gets rebuilt when
-        // changing type.
-        onGenerateRoute: (settings) {
-      return MaterialPageRoute<void>(
-          builder: (context) => Scaffold(
-                body: Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      main();
-                    },
-                    child: const Text('Сгенерировать пароль'),
-                  ),
-                ),
-              ));
-    });
+    return Scaffold(
+      body: Center(
+        child: ListView(
+          children: [
+            generatedText1 ? Text(quack1) : const Text(""),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  quack1 = PasswordGenerator.generator(
+                      8, "абвгдеёжзийклмнопрстуфхцчшщъыьэю");
+                  generatedText1 = true;
+                });
+              },
+              child: const Text('Сгенерировать пароль 1'),
+            ),
+            TextFormField(
+              controller: fieldController,
+              decoration: const InputDecoration(labelText: "Алфавит"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  quack2 = PasswordGenerator.mapGenerator(fieldController.text);
+                  generatedText2 = true;
+                });
+              },
+              child: const Text("Сгенерировать пароль 2"),
+            ),
+            Container(
+                margin: const EdgeInsets.all(5),
+                child: generatedText2 ? Text(quack2) : const Text("")),
+          ],
+        ),
+      ),
+    );
   }
 }
 
 class PasswordGenerator {
-  static String generate(length, collection) {
+  static String generator(length, collection) {
     var rand = Random();
     String password = "";
     for (int i = 0; i < length; i++) {
@@ -37,71 +70,34 @@ class PasswordGenerator {
     return password;
   }
 
-  static String generateWithMap({required PasswordSegmentMapper map}) {
+  static String mapGenerator(custom_map) {
     var rand = Random();
-    String password = "";
-    print(map.length);
-    for (int i = 0; i < map.length; i++) {
-      var segment = PasswordSegmentMapper.getSegmentMap(map.segment[i]);
-      if (segment == "empty") {
-        password += map.segment[i];
-        continue;
-      }
-      print("map - " + segment);
-      var index = rand.nextInt(segment.length);
-      password += segment[index];
+    int size = 8;
+    String dict1 = "!\”#\$%&’,*",
+        dict2 = "1234567890",
+        dict3 = "qwertyuiopasdfghjklzxcvbnm",
+        password = "";
+    int Q = custom_map.length ~/ 5;
+    for (int i = 0; i <= Q; i++) {
+      var index = rand.nextInt(dict1.length);
+      password += dict1[index];
     }
+    for (int i = Q; i < size - 1; i++) {
+      var index = rand.nextInt(dict2.length);
+      password += dict2[index];
+    }
+    password += dict3[rand.nextInt(dict3.length)];
+
     return password;
   }
 }
 
-class PasswordSegmentMapper {
-  static const dicts = <String, String>{
-    "russian_low": "йцукенгшщзхъфывапролджэячсмитьбю",
-    "russian_up": "ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ",
-    "numbers": "1234567890",
-    "symbols": "!#\$\"%&`,*",
-  };
-  int length = 0;
-  List<String> segment;
-
-  PasswordSegmentMapper(this.segment) {
-    length = segment.length;
-  }
-
-  static getSegmentMap(String str) {
-    if (dicts[str] == null) return "empty";
-    return dicts[str];
-  }
-}
-
-String customValue(int N) {
-  // Любая другая функция
-  var expr = (pow(N, 4) % 100);
-  return expr < 10 ? "0" + expr.toString() : expr.toString();
-}
-
 void main() {
-  String pas1, pas2;
-  // ignore: non_constant_identifier_names
-  String user_text = "YaVvel16Simvolov";
-  final int N = user_text.length;
-
-  var map1 = [
-    "russian_low",
-    "russian_low",
-    "russian_low",
-    "russian_up",
-    "russian_up",
-    "numbers",
-    customValue(N),
-    "russian_up",
-  ];
-
-  PasswordSegmentMapper psm = PasswordSegmentMapper(map1);
-  pas1 = PasswordGenerator.generate(16, "qewrtyuiopasfdghjklxc");
-  pas2 = PasswordGenerator.generateWithMap(map: psm);
-
-  print("P1: " + pas1);
-  print("P2: " + pas2);
+  String password1, password2;
+  String map = "hahdjkbbfdbl";
+  password1 =
+      PasswordGenerator.generator(8, "абвгдеёжзийклмнопрстуфхцчшщъыьэю");
+  password2 = PasswordGenerator.mapGenerator(map);
+  print("Password 1 : " + password1);
+  print("Password 2 : " + password2);
 }
