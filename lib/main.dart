@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:backdrop/backdrop.dart';
+import 'package:quack/blank_page.dart';
 import 'package:quack/labs/lab1.dart';
+import 'package:quack/labs/lab2.dart';
 import 'package:quack/lecture.dart';
 import 'package:firebase_core/firebase_core.dart';
 import './practice.dart';
@@ -103,10 +105,11 @@ void main() async {
       initialRoute: '/',
       routes: {
         '/': (context) => const Backdrop(),
-        '/practice': (context) => const PracticePage(),
-        //'/labs/lab1': (context) => const Lab11_Show(),
-        '/labs/lab1': (context) => const Lab1Show(),
+        '/blank': (context) => const Blank_p(),
         '/lectures': (context) => const LecturePageV2(),
+        '/practice': (context) => const PracticePage(),
+        '/labs/lab1': (context) => const Lab1Show(),
+        '/labs/lab2': (context) => const Lab2Show(),
       },
     ),
   );

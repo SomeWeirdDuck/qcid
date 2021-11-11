@@ -72,7 +72,7 @@ class PasswordGenerator {
 
   static String mapGenerator(custom_map) {
     var rand = Random();
-    int size = 8;
+    int size = 9;
     String dict1 = "!\”#\$%&’,*",
         dict2 = "1234567890",
         dict3 = "qwertyuiopasdfghjklzxcvbnm",
@@ -83,10 +83,10 @@ class PasswordGenerator {
       password += dict1[index];
     }
     for (int i = Q; i < size - 1; i++) {
-      var index = rand.nextInt(dict2.length);
-      password += dict2[index];
+      var index = rand.nextInt(dict3.length);
+      password += dict3[index];
     }
-    password += dict3[rand.nextInt(dict3.length)];
+    password += dict2[rand.nextInt(dict2.length)];
 
     return password;
   }
