@@ -56,9 +56,9 @@ class CryptoTables {
   static const String message2 = "Что делать, если не хочеться делать?";
 
   static String cryptoTableEncode() {
-    String phrase = "Привет";
-    int a = 2;
-    int b = 3;
+    String phrase = "Не используй флюттер на зки!";
+    int a = 4;
+    int b = 7;
     int c = 0;
     String encodedPhrase = "";
     var list = List.generate(a, (i) => List.filled(b, "", growable: false),
@@ -81,8 +81,8 @@ class CryptoTables {
 
   static String cryptoTableDecode() {
     String phrase = cryptoTableEncode();
-    int listHeight = 2;
-    int listWidth = 3;
+    int listHeight = 4;
+    int listWidth = 7;
     int counter = 0;
     String decodedPhrase = "";
     var list = List.generate(
