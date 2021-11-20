@@ -47,3 +47,7 @@ app.*.map.json
 
 # Custom
 /lib/labs/lab112.dart
+flutter_??.png
+/.vscode
+pubspec.lock
+test.dart
